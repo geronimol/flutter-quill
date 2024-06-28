@@ -54,6 +54,11 @@ class ColorPickerDialogState extends State<ColorPickerDialog> {
       actions: [
         TextButton(
             onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Cancel')),
+        TextButton(
+            onPressed: () {
               widget.onRequestChangeColor(context, selectedColor);
               Navigator.of(context).pop();
             },
