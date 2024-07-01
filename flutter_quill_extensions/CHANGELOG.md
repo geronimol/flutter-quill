@@ -4,6 +4,41 @@
 
 All notable changes to this project will be documented in this file.
 
+## 9.5.2
+
+* Fix style settings by @AtlasAutocode in https://github.com/singerdmx/flutter-quill/pull/1962
+
+
+**Full Changelog**: https://github.com/singerdmx/flutter-quill/compare/v9.5.1...v9.5.2
+
+## 9.5.1
+
+* feat(extensions): Youtube Video Player Support Mode by @ellet0 in https://github.com/singerdmx/flutter-quill/pull/1916
+
+
+**Full Changelog**: https://github.com/singerdmx/flutter-quill/compare/v9.5.0...v9.5.1
+
+## 9.5.0
+
+* Partial support for table embed by @CatHood0 in https://github.com/singerdmx/flutter-quill/pull/1960
+
+
+**Full Changelog**: https://github.com/singerdmx/flutter-quill/compare/v9.4.9...v9.5.0
+
+## 9.4.9
+
+* Upgrade photo_view to 0.15.0 for flutter_quill_extensions by @singerdmx in https://github.com/singerdmx/flutter-quill/pull/1958
+
+
+**Full Changelog**: https://github.com/singerdmx/flutter-quill/compare/v9.4.8...v9.4.9
+
+## 9.4.8
+
+* Add support for html underline and videos  by @CatHood0 in https://github.com/singerdmx/flutter-quill/pull/1955
+
+
+**Full Changelog**: https://github.com/singerdmx/flutter-quill/compare/v9.4.7...v9.4.8
+
 ## 9.4.7
 
 * fixed #1953 italic detection error by @CatHood0 in https://github.com/singerdmx/flutter-quill/pull/1954
