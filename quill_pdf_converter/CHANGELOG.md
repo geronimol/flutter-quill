@@ -4,6 +4,74 @@
 
 All notable changes to this project will be documented in this file.
 
+## 9.5.12
+
+* fix: Fixed passing textStyle to formula embed by @shubham030 in https://github.com/singerdmx/flutter-quill/pull/1989
+
+## New Contributors
+* @shubham030 made their first contribution in https://github.com/singerdmx/flutter-quill/pull/1989
+
+**Full Changelog**: https://github.com/singerdmx/flutter-quill/compare/v9.5.11...v9.5.12
+
+## 9.5.11
+
+* Update flutter_quill_delta_from_html in pubspec.yaml by @CatHood0 in https://github.com/singerdmx/flutter-quill/pull/1988
+
+
+**Full Changelog**: https://github.com/singerdmx/flutter-quill/compare/v9.5.10...v9.5.11
+
+## 9.5.10
+
+* chore: remove dependency html converter by @ellet0 in https://github.com/singerdmx/flutter-quill/pull/1987
+* Fix: LineHeight button to use MenuAnchor by @AtlasAutocode in https://github.com/singerdmx/flutter-quill/pull/1986
+
+
+**Full Changelog**: https://github.com/singerdmx/flutter-quill/compare/v9.5.9...v9.5.10
+
+## 9.5.9
+
+* Update pubspec.yaml to remove html2md by @singerdmx in https://github.com/singerdmx/flutter-quill/pull/1985
+
+
+**Full Changelog**: https://github.com/singerdmx/flutter-quill/compare/v9.5.8...v9.5.9
+
+## 9.5.8
+
+* fix(typo): fix typo ClipboardServiceProvider.instacne by @ellet0 in https://github.com/singerdmx/flutter-quill/pull/1983
+* Feat: New way to get Delta from HTML inputs by @CatHood0 in https://github.com/singerdmx/flutter-quill/pull/1984
+
+
+**Full Changelog**: https://github.com/singerdmx/flutter-quill/compare/v9.5.7...v9.5.8
+
+## 9.5.7
+
+* refactor: context menu function, add test code by @n7484443 in https://github.com/singerdmx/flutter-quill/pull/1979
+* Fix: PreserveInlineStylesRule by @AtlasAutocode in https://github.com/singerdmx/flutter-quill/pull/1980
+
+
+**Full Changelog**: https://github.com/singerdmx/flutter-quill/compare/v9.5.6...v9.5.7
+
+## 9.5.6
+
+* fix: common link is detected as a video link by @CatHood0 in https://github.com/singerdmx/flutter-quill/pull/1978
+
+
+**Full Changelog**: https://github.com/singerdmx/flutter-quill/compare/v9.5.5...v9.5.6
+
+## 9.5.5
+
+* fix: context menu behavior in mouse, desktop env by @n7484443 in https://github.com/singerdmx/flutter-quill/pull/1976
+
+
+**Full Changelog**: https://github.com/singerdmx/flutter-quill/compare/v9.5.4...v9.5.5
+
+## 9.5.4
+
+* Feat: Line height support by @CatHood0 in https://github.com/singerdmx/flutter-quill/pull/1972
+
+
+**Full Changelog**: https://github.com/singerdmx/flutter-quill/compare/v9.5.3...v9.5.4
+
 ## 9.5.3
 
 * Perf: Performance optimization by @Alspb in https://github.com/singerdmx/flutter-quill/pull/1964
