@@ -506,7 +506,7 @@ class QuillRawEditorState extends EditorState
           child: Semantics(
             child: MouseRegion(
               cursor: widget.configurations.readOnly
-                  ? widget.configurations.readOnlyMouseCursor
+                  ? SystemMouseCursors.basic
                   : SystemMouseCursors.text,
               child: QuillRawEditorMultiChildRenderObject(
                 key: _editorKey,
