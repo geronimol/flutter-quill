@@ -233,6 +233,7 @@ class _LinkDialogState extends State<_LinkDialog> {
         ),
       ),
       actions: [
+        TextButton(onPressed: () => Navigator.pop(context), child: Text('Cancel', style: widget.dialogTheme?.buttonTextStyle)),
         _okButton(),
       ],
     );
