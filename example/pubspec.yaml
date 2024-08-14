@@ -13,10 +13,10 @@ dependencies:
   cupertino_icons: ^1.0.6
 
   # Flutter Quill Packages
-  flutter_quill: ^9.3.4
-  dart_quill_delta: ^9.3.4
-  flutter_quill_extensions: ^9.3.4
-  flutter_quill_test: ^9.3.4
+  flutter_quill: ^10.0.0
+  dart_quill_delta: ^10.0.0
+  flutter_quill_extensions: ^10.0.0
+  flutter_quill_test: ^10.0.0
   # Dart Packages
   path: ^1.8.3
   equatable: ^2.0.5
@@ -35,7 +35,7 @@ dependencies:
   json_annotation: ^4.8.1
 
   # Plugins
-  image_cropper: ^5.0.1
+  image_cropper: ^8.0.1
   path_provider: ^2.1.2
   # For drag and drop feature
   desktop_drop: ^0.4.4
