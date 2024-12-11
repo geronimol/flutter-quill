@@ -1,770 +1,177 @@
 {
   "ar": [
-    "alignJustify",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "bg": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "bn": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
+  ],
+
+  "ca": [
+    "insertVideo"
   ],
 
   "cs": [
-    "alignJustify",
-    "caseSensitive",
-    "wholeWord",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "da": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "de": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
+  ],
+
+  "el": [
+    "insertVideo"
   ],
 
   "en_US": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "es": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "fa": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "fr": [
-    "alignJustify",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "he": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "hi": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
+  ],
+
+  "hu": [
+    "insertVideo"
   ],
 
   "id": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "it": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "ja": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "ko": [
-    "alignJustify",
-    "insertTable"
+    "insertVideo"
+  ],
+
+  "ku": [
+    "insertVideo"
+  ],
+
+  "ku_CKB": [
+    "insertVideo"
   ],
 
   "ms": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "ne": [
-    "alignJustify",
-    "caseSensitive",
-    "wholeWord",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "nl": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "no": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "pl": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "pt": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "pt_BR": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "ro": [
-    "alignJustify",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "ro_RO": [
-    "alignJustify",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "ru": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "sk": [
-    "alignJustify",
-    "caseSensitive",
-    "wholeWord",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "sr": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "sv": [
-    "alignJustify",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "sw": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
+  ],
+
+  "th": [
+    "insertVideo"
   ],
 
   "tk": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "tr": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "uk": [
-    "alignJustify",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "ur": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "vi": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "zh": [
-    "alignJustify",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "zh_CN": [
-    "alignJustify",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ],
 
   "zh_HK": [
-    "alignJustify",
-    "normal",
-    "heading1",
-    "heading2",
-    "heading3",
-    "heading4",
-    "heading5",
-    "heading6",
-    "theImageHasBeenSavedAt",
-    "caseSensitive",
-    "wholeWord",
-    "pickAPhotoFromYourGallery",
-    "takeAPhotoUsingYourCamera",
-    "pasteAPhotoUsingALink",
-    "pickAVideoFromYourGallery",
-    "recordAVideoUsingYourCamera",
-    "pasteAVideoUsingALink",
-    "close",
-    "searchSettings",
-    "cut",
-    "paste",
-    "insertTable"
+    "insertVideo"
   ]
 }

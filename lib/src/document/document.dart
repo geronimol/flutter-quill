@@ -1,13 +1,12 @@
 import 'dart:async' show StreamController;
 
-import 'package:meta/meta.dart' show experimental;
+import 'package:meta/meta.dart';
 
 import '../../quill_delta.dart';
 import '../common/structs/offset_value.dart';
 import '../common/structs/segment_leaf_node.dart';
-import '../delta/delta_x.dart';
-import '../editor/config/editor_configurations.dart';
-import '../editor/config/search_configurations.dart';
+
+import '../editor/config/search_config.dart';
 import '../editor/embed/embed_editor_builder.dart';
 import '../rules/rule.dart';
 import 'attribute.dart';
@@ -182,6 +181,9 @@ class Document {
   /// Special case of no-selection at start of empty line: gets inline style(s) from preceding non-empty line.
   Style collectStyle(int index, int len) {
     var res = queryChild(index);
+    if (res.node == null) {
+      return const Style();
+    }
     if (len > 0) {
       return (res.node as Line).collectStyle(res.offset, len);
     }
@@ -201,9 +203,10 @@ class Document {
           attributes[attr.key] = attr;
         }
       }
-      // Combine with block attributes from current line
+      // Combine with block attributes from current line (exclude headers which apply only to the active line)
       for (final attr in current.attributes.values) {
-        if (attr.scope == AttributeScope.block) {
+        if (attr.scope == AttributeScope.block &&
+            attr.key != Attribute.header.key) {
           attributes[attr.key] = attr;
         }
       }
@@ -244,34 +247,63 @@ class Document {
     return (res.node as Line).collectAllStylesWithOffsets(res.offset, len);
   }
 
-  /// Editor configurations
-  ///
-  /// Caches configuration set in QuillController.
-  /// Allows access to embedBuilders and search configurations
-  QuillEditorConfigurations? _editorConfigurations;
-  QuillEditorConfigurations get editorConfigurations =>
-      _editorConfigurations ?? const QuillEditorConfigurations();
-  set editorConfigurations(QuillEditorConfigurations? value) =>
-      _editorConfigurations = value;
-  QuillSearchConfigurations get searchConfigurations =>
-      editorConfigurations.searchConfigurations;
+  // Store properties that are set in the editor config
+  // to access them here to support search within embed objects.
+  // See https://github.com/singerdmx/flutter-quill/pull/2090
+  Iterable<EmbedBuilder>? _embedBuilders;
+  EmbedBuilder? _unknownEmbedBuilder;
+  QuillSearchConfig? _searchConfig;
+
+  @visibleForTesting
+  @internal
+  Iterable<EmbedBuilder>? get embedBuilders => _embedBuilders;
+
+  @visibleForTesting
+  @internal
+  EmbedBuilder? get unknownEmbedBuilder => _unknownEmbedBuilder;
+
+  @visibleForTesting
+  @internal
+  QuillSearchConfig? get searchConfig => _searchConfig;
+
+  @internal
+  set searchConfig(QuillSearchConfig? searchConfig) =>
+      _searchConfig = searchConfig;
+
+  @internal
+  set embedBuilders(Iterable<EmbedBuilder>? embedBuilders) =>
+      _embedBuilders = embedBuilders;
+
+  @internal
+  set unknownEmbedBuilder(EmbedBuilder? unknownEmbedBuilder) =>
+      _unknownEmbedBuilder = unknownEmbedBuilder;
 
   /// Returns plain text within the specified text range.
-  String getPlainText(int index, int len, [bool includeEmbeds = false]) {
+  String getPlainText(
+    int index,
+    int len, {
+    @internal bool includeEmbeds = false,
+  }) {
     final res = queryChild(index);
     return (res.node as Line).getPlainText(
-        res.offset, len, includeEmbeds ? editorConfigurations : null);
+      res.offset,
+      len,
+      embedBuilders: includeEmbeds ? _embedBuilders : null,
+      unknownEmbedBuilder: includeEmbeds ? _unknownEmbedBuilder : null,
+    );
   }
 
   /// Returns [Line] located at specified character [offset].
   ChildQuery queryChild(int offset) {
     // TODO: prevent user from moving caret after last line-break.
     final res = _root.queryChild(offset, true);
+    if (res.node == null) {
+      return res;
+    }
     if (res.node is Line) {
       return res;
     }
-    final block = res.node
-        as Block; // TODO: Can be nullable, handle this case to avoid cast exception
+    final block = res.node as Block;
     return block.queryChild(res.offset, true);
   }
 
@@ -286,12 +318,24 @@ class Document {
     final matches = <int>[];
     for (final node in _root.children) {
       if (node is Line) {
-        _searchLine(substring, caseSensitive, wholeWord,
-            searchConfigurations.searchEmbedMode, node, matches);
+        _searchLine(
+          substring,
+          caseSensitive,
+          wholeWord,
+          _searchConfig?.searchEmbedMode ?? SearchEmbedMode.none,
+          node,
+          matches,
+        );
       } else if (node is Block) {
         for (final line in Iterable.castFrom<dynamic, Line>(node.children)) {
-          _searchLine(substring, caseSensitive, wholeWord,
-              searchConfigurations.searchEmbedMode, line, matches);
+          _searchLine(
+            substring,
+            caseSensitive,
+            wholeWord,
+            _searchConfig?.searchEmbedMode ?? SearchEmbedMode.none,
+            line,
+            matches,
+          );
         }
       } else {
         throw StateError('Unreachable.');
@@ -351,16 +395,18 @@ class Document {
 
   String? _embedSearchText(Embed node) {
     EmbedBuilder? builder;
-    if (editorConfigurations.embedBuilders != null) {
+
+    final embedBuilders = _embedBuilders;
+    if (embedBuilders != null) {
       // Find the builder for this embed
-      for (final b in editorConfigurations.embedBuilders!) {
+      for (final b in embedBuilders) {
         if (b.key == node.value.type) {
           builder = b;
           break;
         }
       }
     }
-    builder ??= editorConfigurations.unknownEmbedBuilder;
+    builder ??= _unknownEmbedBuilder;
     //  Get searchable text for this embed
     return builder?.toPlainText(node);
   }
@@ -540,18 +586,6 @@ class Document {
     return delta.length == 1 &&
         delta.first.data == '\n' &&
         delta.first.key == 'insert';
-  }
-
-  /// Convert the HTML Raw string to [Document]
-  @experimental
-  @Deprecated(
-    '''
-    The experimental support for HTML conversion has been dropped and will be removed in future releases, 
-    consider using alternatives such as https://pub.dev/packages/flutter_quill_delta_from_html
-    ''',
-  )
-  static Document fromHtml(String html) {
-    return Document.fromDelta(DeltaX.fromHtml(html));
   }
 }
 

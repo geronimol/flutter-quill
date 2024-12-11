@@ -9,20 +9,19 @@ import '../../../delta/delta_diff.dart';
 import '../../../document/attribute.dart';
 import '../../../document/nodes/block.dart';
 import '../../../document/nodes/line.dart';
-import '../../../toolbar/base_toolbar.dart';
+import '../../../editor_toolbar_shared/color.dart';
 import '../../editor.dart';
 import '../../embed/embed_editor_builder.dart';
-import '../../provider.dart';
-import '../../style_widgets/bullet_point.dart';
-import '../../style_widgets/checkbox_point.dart';
-import '../../style_widgets/number_point.dart';
+import '../../raw_editor/builders/leading_block_builder.dart';
 import '../box.dart';
 import '../cursor.dart';
+import '../default_leading_components/leading_components.dart';
 import '../default_styles.dart';
 import '../delegate.dart';
 import '../link.dart';
 import 'text_line.dart';
 import 'text_selection.dart';
+import 'utils/text_block_utils.dart';
 
 const List<int> arabianRomanNumbers = [
   1000,
@@ -77,10 +76,13 @@ class EditableTextBlock extends StatelessWidget {
     required this.clearIndents,
     required this.onCheckboxTap,
     required this.readOnly,
+    required this.customRecognizerBuilder,
+    required this.composingRange,
     this.checkBoxReadOnly,
     this.onLaunchUrl,
     this.customStyleBuilder,
     this.customLinkPrefixes = const <String>[],
+    this.customLeadingBlockBuilder,
     super.key,
   });
 
@@ -93,12 +95,14 @@ class EditableTextBlock extends StatelessWidget {
   final TextSelection textSelection;
   final Color color;
   final DefaultStyles? styles;
+  final LeadingBlockNodeBuilder? customLeadingBlockBuilder;
   final bool enableInteractiveSelection;
   final bool hasFocus;
   final EdgeInsets? contentPadding;
   final EmbedsBuilder embedBuilder;
   final LinkActionPicker linkActionPicker;
   final ValueChanged<String>? onLaunchUrl;
+  final CustomRecognizerBuilder? customRecognizerBuilder;
   final CustomStyleBuilder? customStyleBuilder;
   final CursorCont cursorCont;
   final Map<int, int> indentLevelCounts;
@@ -107,6 +111,7 @@ class EditableTextBlock extends StatelessWidget {
   final bool readOnly;
   final bool? checkBoxReadOnly;
   final List<String> customLinkPrefixes;
+  final TextRange composingRange;
 
   @override
   Widget build(BuildContext context) {
@@ -154,6 +159,12 @@ class EditableTextBlock extends StatelessWidget {
   List<Widget> _buildChildren(BuildContext context,
       Map<int, int> indentLevelCounts, bool clearIndents) {
     final defaultStyles = QuillStyles.getStyles(context, false);
+    final numberPointWidthBuilder =
+        defaultStyles?.lists?.numberPointWidthBuilder ??
+            TextBlockUtils.defaultNumberPointWidthBuilder;
+    final indentWidthBuilder = defaultStyles?.lists?.indentWidthBuilder ??
+        TextBlockUtils.defaultIndentWidthBuilder;
+
     final count = block.children.length;
     final children = <Widget>[];
     if (clearIndents) {
@@ -182,8 +193,10 @@ class EditableTextBlock extends StatelessWidget {
           linkActionPicker: linkActionPicker,
           onLaunchUrl: onLaunchUrl,
           customLinkPrefixes: customLinkPrefixes,
+          customRecognizerBuilder: customRecognizerBuilder,
+          composingRange: composingRange,
         ),
-        _getIndentWidth(context, count),
+        indentWidthBuilder(block, context, count, numberPointWidthBuilder),
         _getSpacingForLine(line, index, count, defaultStyles),
         textDirection,
         textSelection,
@@ -192,16 +205,9 @@ class EditableTextBlock extends StatelessWidget {
         hasFocus,
         MediaQuery.devicePixelRatioOf(context),
         cursorCont,
+        styles!.inlineCode!,
       );
-      var nodeTextDirection = getDirectionOfNode(line);
-      // verify if the direction from nodeTextDirection is the default direction
-      // and watch if the system language is a RTL language and avoid putting
-      // to the edge of the left side any checkbox or list point/number if is a
-      // RTL language
-      if (nodeTextDirection == TextDirection.ltr &&
-          textDirection == TextDirection.rtl) {
-        nodeTextDirection = TextDirection.rtl;
-      }
+      final nodeTextDirection = getDirectionOfNode(line, textDirection);
       children.add(
         Directionality(
           textDirection: nodeTextDirection,
@@ -210,20 +216,6 @@ class EditableTextBlock extends StatelessWidget {
       );
     }
     return children.toList(growable: false);
-  }
-
-  double _numberPointWidth(double fontSize, int count) {
-    final length = '$count'.length;
-    switch (length) {
-      case 1:
-      case 2:
-        return fontSize * 2;
-      default:
-        // 3 -> 2.5
-        // 4 -> 3
-        // 5 -> 3.5
-        return fontSize * (length - (length - 2) / 2);
-    }
   }
 
   Widget? _buildLeading({
@@ -236,6 +228,9 @@ class EditableTextBlock extends StatelessWidget {
     final defaultStyles = QuillStyles.getStyles(context, false)!;
     final fontSize = defaultStyles.paragraph?.style.fontSize ?? 16;
     final attrs = line.style.attributes;
+    final numberPointWidthBuilder =
+        defaultStyles.lists?.numberPointWidthBuilder ??
+            TextBlockUtils.defaultNumberPointWidthBuilder;
 
     // Of the color button
     final fontColor =
@@ -262,96 +257,92 @@ class EditableTextBlock extends StatelessWidget {
     // final textAlign = line.style.attributes[Attribute.align.key]?.value != null
     //     ? getTextAlign(line.style.attributes[Attribute.align.key]?.value)
     //     : null;
-
-    if (attrs[Attribute.list.key] == Attribute.ol) {
-      return QuillEditorNumberPoint(
-        index: index,
-        indentLevelCounts: indentLevelCounts,
-        count: count,
-        style: defaultStyles.leading!.style.copyWith(
-          fontSize: size,
-          color: context.quillEditorElementOptions?.orderedList
-                      .useTextColorForDot ==
-                  true
-              ? fontColor
-              : null,
-        ),
-        attrs: attrs,
-        width: _numberPointWidth(fontSize, count),
-        padding: fontSize / 2,
+    final attribute =
+        attrs[Attribute.list.key] ?? attrs[Attribute.codeBlock.key];
+    final isUnordered = attribute == Attribute.ul;
+    final isOrdered = attribute == Attribute.ol;
+    final isCheck =
+        attribute == Attribute.checked || attribute == Attribute.unchecked;
+    final isCodeBlock = attrs.containsKey(Attribute.codeBlock.key);
+    if (attribute == null) return null;
+    final leadingConfig = LeadingConfig(
+      attribute: attribute,
+      attrs: attrs,
+      indentLevelCounts: indentLevelCounts,
+      index: isOrdered || isCodeBlock ? index : null,
+      count: count,
+      enabled: !isCheck ? null : !(checkBoxReadOnly ?? readOnly),
+      style: () {
+        if (isOrdered) {
+          return defaultStyles.leading!.style.copyWith(
+            fontSize: size,
+            color: fontColor,
+          );
+        }
+        if (isUnordered) {
+          return defaultStyles.leading!.style.copyWith(
+            fontWeight: FontWeight.bold,
+            fontSize: size,
+            color: fontColor,
+          );
+        }
+        if (isCheck) {
+          return null;
+        }
+        return defaultStyles.code!.style.copyWith(
+          color: defaultStyles.code!.style.color!.withOpacity(0.4),
+        );
+      }(),
+      width: () {
+        if (isOrdered || isCodeBlock) {
+          return numberPointWidthBuilder(fontSize, count);
+        }
+        if (isUnordered) {
+          return numberPointWidthBuilder(fontSize, 1); // same as fontSize * 2
+        }
+        return null;
+      }(),
+      padding: () {
+        if (isOrdered || isUnordered) {
+          return fontSize / 2;
+        }
+        if (isCodeBlock) {
+          return fontSize;
+        }
+        return null;
+      }(),
+      lineSize: isCheck ? fontSize : null,
+      uiBuilder: isCheck ? defaultStyles.lists?.checkboxUIBuilder : null,
+      value: attribute == Attribute.checked,
+      onCheckboxTap: !isCheck
+          ? (value) {}
+          : (value) => onCheckboxTap(line.documentOffset, value),
+    );
+    if (customLeadingBlockBuilder != null) {
+      final leadingBlockNodeBuilder = customLeadingBlockBuilder?.call(
+        line,
+        leadingConfig,
       );
-    }
-
-    if (attrs[Attribute.list.key] == Attribute.ul) {
-      return QuillEditorBulletPoint(
-        style: defaultStyles.leading!.style.copyWith(
-          fontWeight: FontWeight.bold,
-          fontSize: size,
-          color: context.quillEditorElementOptions?.unorderedList
-                      .useTextColorForDot ==
-                  true
-              ? fontColor
-              : null,
-        ),
-        width: fontSize * 2,
-        padding: fontSize / 2,
-      );
-    }
-
-    if (attrs[Attribute.list.key] == Attribute.checked ||
-        attrs[Attribute.list.key] == Attribute.unchecked) {
-      return QuillEditorCheckboxPoint(
-        size: fontSize,
-        value: attrs[Attribute.list.key] == Attribute.checked,
-        enabled: !(checkBoxReadOnly ?? readOnly),
-        onChanged: (checked) => onCheckboxTap(line.documentOffset, checked),
-        uiBuilder: defaultStyles.lists?.checkboxUIBuilder,
-      );
-    }
-    if (attrs.containsKey(Attribute.codeBlock.key) &&
-        context.requireQuillEditorElementOptions.codeBlock.enableLineNumbers) {
-      return QuillEditorNumberPoint(
-        index: index,
-        indentLevelCounts: indentLevelCounts,
-        count: count,
-        style: defaultStyles.code!.style
-            .copyWith(color: defaultStyles.code!.style.color!.withOpacity(0.4)),
-        width: _numberPointWidth(fontSize, count),
-        attrs: attrs,
-        padding: fontSize,
-        withDot: false,
-      );
-    }
-    return null;
-  }
-
-  HorizontalSpacing _getIndentWidth(BuildContext context, int count) {
-    final defaultStyles = QuillStyles.getStyles(context, false)!;
-    final fontSize = defaultStyles.paragraph?.style.fontSize ?? 16;
-    final attrs = block.style.attributes;
-
-    final indent = attrs[Attribute.indent.key];
-    var extraIndent = 0.0;
-    if (indent != null && indent.value != null) {
-      extraIndent = fontSize * indent.value;
-    }
-
-    if (attrs.containsKey(Attribute.blockQuote.key)) {
-      return HorizontalSpacing(fontSize + extraIndent, 0);
-    }
-
-    var baseIndent = 0.0;
-
-    if (attrs.containsKey(Attribute.list.key)) {
-      baseIndent = fontSize * 2;
-      if (attrs[Attribute.list.key] == Attribute.ol) {
-        baseIndent = _numberPointWidth(fontSize, count);
-      } else if (attrs.containsKey(Attribute.codeBlock.key)) {
-        baseIndent = _numberPointWidth(fontSize, count);
+      if (leadingBlockNodeBuilder != null) {
+        return leadingBlockNodeBuilder;
       }
     }
 
-    return HorizontalSpacing(baseIndent + extraIndent, 0);
+    if (isOrdered) {
+      return numberPointLeading(leadingConfig);
+    }
+
+    if (isUnordered) {
+      return bulletPointLeading(leadingConfig);
+    }
+
+    if (isCheck) {
+      return checkboxLeading(leadingConfig);
+    }
+    if (isCodeBlock) {
+      return codeBlockLineNumberLeading(leadingConfig);
+    }
+    return null;
   }
 
   VerticalSpacing _getSpacingForLine(
