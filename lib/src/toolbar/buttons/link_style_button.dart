@@ -255,8 +255,12 @@ class _LinkDialogState extends State<_LinkDialog> {
   }
 
   void _linkChanged(String value) {
+    var newValue = value;
+    if(!value.startsWith('http://') && !value.startsWith('https://')) {
+      newValue = 'https://$value';
+    }
     setState(() {
-      _link = value;
+      _link = newValue;
     });
   }
 
